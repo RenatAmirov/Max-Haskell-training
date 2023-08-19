@@ -33,7 +33,7 @@ ms_3 = [[x1, x2, x3,
               x1 + x2 + x3 == x3 + y2 + z1]
 -}
 
-------------------------------------------------------------------------
+-------------В ЛОБ-----------------------------------------------------------
 
 -- magicSum :: Fractional a => a -> a
 -- magicSum n = n * (n^2 + 1) / 2
@@ -65,7 +65,7 @@ ms_3' = [[x1, x2, x3,
                 x1 + y2 + z3 == ms]
               where ms = magicSum 3
 -}
-------------------------------------------------------------------------------
+-----------ПЕРЕСТАНОВКИ-------------------------------------------------------------------
 
 isMagic :: Int -> [Int] -> Bool
 isMagic n ms = if (n^2 /= length ms)
@@ -106,3 +106,20 @@ testD s n ms =
 
 getMagicSquares :: Int -> [[Int]]
 getMagicSquares n = [ms | ms <- permutations [1..(n^2)], isMagic n ms]
+
+---------РАЗМЕЩЕНИЯ-----------------------------------------------------
+{-
+constructSquares :: Integral a => a -> [a] -> [[a]]
+constructSquares _ [] = [[]]
+constructSquares n l = [a ++ as | a <- (arrangements n l), sum a == s, as <- (constructSquares n (l /// a))]
+    where s = magicSum n
+
+getMagicSquares' :: Int -> [[Int]]
+getMagicSquares' n = [ms | ms <- constructSquares n [1..(n^2)], isMagic n ms ]
+
+-}
+
+
+
+
+
